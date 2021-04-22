@@ -17,7 +17,7 @@ let Car = sprites.create(img`
     . . e e e e f f f . . . . . . . 
     `, SpriteKind.Player)
 tiles.setTilemap(tilemap`level1`)
-scene.setBackgroundColor(14)
+scene.setBackgroundColor(11)
 Car.setPosition(5, 215)
 scene.cameraFollowSprite(Car)
 Car.ay = 300
