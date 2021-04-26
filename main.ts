@@ -45,8 +45,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     music.smallCrash.play()
-    Car.setPosition(7, 214)
     pause(100)
+    Car.setPosition(5, 214)
     info.changeLifeBy(-1)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
