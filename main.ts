@@ -16,23 +16,23 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 function setLevelTileMap (num: number) {
     if (num == 0) {
         tiles.setTilemap(tilemap`level1`)
-        Car.setPosition(5, 214)
+        Car.setPosition(8, 213)
         info.startCountdown(50)
     } else if (num == 1) {
         tiles.setTilemap(tilemap`level3`)
-        Car.setPosition(5, 214)
+        Car.setPosition(8, 213)
         info.startCountdown(70)
     } else if (num == 2) {
         tiles.setTilemap(tilemap`level2`)
-        Car.setPosition(5, 214)
+        Car.setPosition(8, 213)
         info.startCountdown(50)
     } else if (num == 3) {
         tiles.setTilemap(tilemap`level7`)
-        Car.setPosition(5, 214)
+        Car.setPosition(8, 213)
         info.startCountdown(60)
     } else if (num == 4) {
         tiles.setTilemap(tilemap`level9`)
-        Car.setPosition(5, 214)
+        Car.setPosition(8, 213)
         info.startCountdown(70)
     }
     hasNextLevel()
@@ -45,8 +45,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     music.smallCrash.play()
+    Car.setPosition(7, 214)
     pause(100)
-    Car.setPosition(5, 214)
     info.changeLifeBy(-1)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
