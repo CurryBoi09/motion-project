@@ -15,13 +15,13 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 })
 function setLevelTileMap (num: number) {
     if (num == 0) {
-        tiles.setTilemap(tilemap`level3`)
-        Car.setPosition(8, 213)
-        info.startCountdown(70)
-    } else if (num == 1) {
         tiles.setTilemap(tilemap`level1`)
         Car.setPosition(8, 213)
         info.startCountdown(50)
+    } else if (num == 1) {
+        tiles.setTilemap(tilemap`level3`)
+        Car.setPosition(8, 213)
+        info.startCountdown(70)
     } else if (num == 2) {
         tiles.setTilemap(tilemap`level2`)
         Car.setPosition(8, 213)
@@ -67,6 +67,7 @@ function Introduction (text: string) {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Banana`, function (sprite, location) {
     info.changeScoreBy(1)
     music.beamUp.play()
+    tiles.setTileAt(location, assets.tile`myTile11`)
 })
 function hasNextLevel () {
     return currentLevel != levelCount
@@ -80,18 +81,18 @@ Car = sprites.create(img`
     . . . . . . . f f f f f . . . . 
     . . . . . . f e e e e e f . . . 
     . . . . . f e e e d d d d f . . 
-    . . . . f f e e d f d d f d 4 . 
-    . . . f d d e e d f d d f d 4 . 
-    . . . 4 d 4 e e d d d d e e d 4 
-    f f . 4 d 4 e e d d 4 d d d d 4 
-    f e f . 4 f e e d d d 4 4 4 4 4 
+    . . . . f f e e d f d d f d c . 
+    . . . f d d e e d f d d f d c . 
+    . . . c d b e e d d d d e e d c 
+    f f . c d b e e d d c d d d d c 
+    f e f . c f e e d d d c c c c c 
     f e f . . f f e e d d d d d f . 
     f e f . f e e e e f f f f f . . 
     f e f f e e e e e e e f . . . . 
     . f f e e e e f e f f e f . . . 
     . . f e e e e f e f f e f . . . 
-    . . . f e f f 4 d f 4 d f . . . 
-    . . . f d 4 4 d d 4 d d f . . . 
+    . . . f e f f b d f b d f . . . 
+    . . . f d b b d d c d d f . . . 
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
 scene.setBackgroundColor(11)
