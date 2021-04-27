@@ -19,13 +19,13 @@ function setLevelTileMap (num: number) {
         Car.setPosition(8, 213)
         info.startCountdown(50)
     } else if (num == 1) {
-        tiles.setTilemap(tilemap`level3`)
-        Car.setPosition(8, 213)
-        info.startCountdown(70)
-    } else if (num == 2) {
         tiles.setTilemap(tilemap`level2`)
         Car.setPosition(8, 213)
         info.startCountdown(50)
+    } else if (num == 2) {
+        tiles.setTilemap(tilemap`level3`)
+        Car.setPosition(8, 213)
+        info.startCountdown(70)
     } else if (num == 3) {
         tiles.setTilemap(tilemap`level7`)
         Car.setPosition(8, 213)
@@ -34,6 +34,8 @@ function setLevelTileMap (num: number) {
         tiles.setTilemap(tilemap`level9`)
         Car.setPosition(8, 213)
         info.startCountdown(70)
+    } else {
+        tiles.setTilemap(tilemap`level16`)
     }
     hasNextLevel()
 }
