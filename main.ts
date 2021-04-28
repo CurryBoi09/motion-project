@@ -34,8 +34,10 @@ function setLevelTileMap (num: number) {
         tiles.setTilemap(tilemap`level9`)
         Car.setPosition(8, 213)
         info.startCountdown(70)
-    } else {
+    } else if (num == 5) {
         tiles.setTilemap(tilemap`level16`)
+        Car.setPosition(8, 16)
+        info.startCountdown(60)
     }
     hasNextLevel()
 }
@@ -47,9 +49,19 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     music.smallCrash.play()
-    Car.setPosition(7, 214)
     pause(100)
     info.changeLifeBy(-1)
+    if (currentLevel == 5) {
+        Car.setPosition(8, 16)
+    } else {
+        Car.setPosition(7, 214)
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
+    info.changeScoreBy(5)
+    info.changeLifeBy(1)
+    music.beamUp.play()
+    tiles.setTileAt(location, assets.tile`myTile11`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
     Car.setPosition(5, 215)
@@ -98,14 +110,14 @@ Car = sprites.create(img`
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
 scene.setBackgroundColor(11)
-Car.setPosition(5, 214)
 scene.cameraFollowSprite(Car)
 JumpAmount = 0
+Car.setPosition(5, 214)
 Car.ay = 300
 info.setLife(3)
 info.setScore(0)
 currentLevel = 0
-levelCount = 5
+levelCount = 6
 setLevelTileMap(currentLevel)
 game.onUpdate(function () {
     Car.x += controller.dx()
