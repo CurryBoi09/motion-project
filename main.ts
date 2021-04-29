@@ -15,35 +15,35 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 })
 function setLevelTileMap (num: number) {
     if (num == 0) {
-        tiles.setTilemap(tilemap`level1`)
-        Car.setPosition(8, 213)
-        info.startCountdown(50)
+        tiles.setTilemap(tilemap`level16`)
+        Monkey.setPosition(8, 16)
+        info.startCountdown(80)
     } else if (num == 1) {
         tiles.setTilemap(tilemap`level2`)
-        Car.setPosition(8, 213)
+        Monkey.setPosition(8, 213)
         info.startCountdown(50)
     } else if (num == 2) {
         tiles.setTilemap(tilemap`level3`)
-        Car.setPosition(8, 213)
+        Monkey.setPosition(8, 213)
         info.startCountdown(70)
     } else if (num == 3) {
         tiles.setTilemap(tilemap`level7`)
-        Car.setPosition(8, 213)
+        Monkey.setPosition(8, 213)
         info.startCountdown(60)
     } else if (num == 4) {
         tiles.setTilemap(tilemap`level9`)
-        Car.setPosition(8, 213)
+        Monkey.setPosition(8, 213)
         info.startCountdown(70)
     } else if (num == 5) {
-        tiles.setTilemap(tilemap`level16`)
-        Car.setPosition(8, 16)
-        info.startCountdown(60)
+        tiles.setTilemap(tilemap`level1`)
+        Monkey.setPosition(8, 213)
+        info.startCountdown(50)
+        hasNextLevel()
     }
-    hasNextLevel()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (JumpAmount < 2) {
-        Car.vy += -100
+        Monkey.vy += -100
         JumpAmount += 1
     }
 })
@@ -51,10 +51,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     music.smallCrash.play()
     pause(100)
     info.changeLifeBy(-1)
-    if (currentLevel == 5) {
-        Car.setPosition(8, 16)
+    if (currentLevel == 0) {
+        Monkey.setPosition(8, 16)
     } else {
-        Car.setPosition(7, 214)
+        Monkey.setPosition(7, 214)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
@@ -64,12 +64,17 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, 
     tiles.setTileAt(location, assets.tile`myTile11`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
-    Car.setPosition(5, 215)
+    Monkey.setPosition(5, 215)
     music.zapped.play()
 })
 info.onCountdownEnd(function () {
     music.buzzer.play()
     game.over(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
+    tiles.setTileAt(location, assets.tile`myTile15`)
+    Monkey.setImage(assets.image`Golden Curious George`)
+    game.showLongText("You have unlocked the golden curious george skin", DialogLayout.Bottom)
 })
 function Introduction (text: string) {
     game.splash("Curious George Satan Run")
@@ -89,9 +94,9 @@ function hasNextLevel () {
 let levelCount = 0
 let currentLevel = 0
 let JumpAmount = 0
-let Car: Sprite = null
+let Monkey: Sprite = null
 Introduction("Introduction")
-Car = sprites.create(img`
+Monkey = sprites.create(img`
     . . . . . . . f f f f f . . . . 
     . . . . . . f e e e e e f . . . 
     . . . . . f e e e d d d d f . . 
@@ -110,15 +115,15 @@ Car = sprites.create(img`
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
 scene.setBackgroundColor(11)
-scene.cameraFollowSprite(Car)
+scene.cameraFollowSprite(Monkey)
 JumpAmount = 0
-Car.setPosition(5, 214)
-Car.ay = 300
+Monkey.setPosition(5, 214)
+Monkey.ay = 300
 info.setLife(3)
 info.setScore(0)
 currentLevel = 0
 levelCount = 6
 setLevelTileMap(currentLevel)
 game.onUpdate(function () {
-    Car.x += controller.dx()
+    Monkey.x += controller.dx()
 })
