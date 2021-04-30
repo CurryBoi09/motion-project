@@ -8,9 +8,9 @@ namespace myImages {
 . . . . . . . f f f f f . . . . 
 . . . . . . f 5 5 5 5 5 f . . . 
 . . . . . f 5 5 5 d d d d f . . 
-. . . . f f 5 5 d f d d f d c . 
-. . . f d d 5 5 d f d d f d c . 
-. . . c d b 5 5 d d d d 5 5 d c 
+. . . . f f 5 5 f f f f f f c . 
+. . . f d d 5 5 d f f d f f c . 
+. . . c d b 5 5 d d d d e e d c 
 f f . c d b 5 5 d d c d d d d c 
 f 5 f . c f 5 5 d d d c c c c c 
 f 5 f . . f f 5 5 d d d d d f . 
