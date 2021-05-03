@@ -15,17 +15,17 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 })
 function setLevelTileMap (num: number) {
     if (num == 0) {
-        tiles.setTilemap(tilemap`level16`)
-        Monkey.setPosition(8, 16)
-        info.startCountdown(80)
+        tiles.setTilemap(tilemap`level3`)
+        Monkey.setPosition(8, 213)
+        info.startCountdown(70)
     } else if (num == 1) {
         tiles.setTilemap(tilemap`level2`)
         Monkey.setPosition(8, 213)
         info.startCountdown(50)
     } else if (num == 2) {
-        tiles.setTilemap(tilemap`level3`)
+        tiles.setTilemap(tilemap`level1`)
         Monkey.setPosition(8, 213)
-        info.startCountdown(70)
+        info.startCountdown(50)
     } else if (num == 3) {
         tiles.setTilemap(tilemap`level7`)
         Monkey.setPosition(8, 213)
@@ -35,10 +35,14 @@ function setLevelTileMap (num: number) {
         Monkey.setPosition(8, 213)
         info.startCountdown(70)
     } else if (num == 5) {
-        tiles.setTilemap(tilemap`level1`)
-        Monkey.setPosition(8, 213)
-        info.startCountdown(50)
+        tiles.setTilemap(tilemap`level16`)
+        Monkey.setPosition(8, 16)
+        info.startCountdown(80)
         hasNextLevel()
+    } else if (num == 6) {
+        tiles.setTilemap(tilemap`level23`)
+        Monkey.setPosition(8, 213)
+        info.startCountdown(70)
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -51,7 +55,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     music.smallCrash.play()
     pause(100)
     info.changeLifeBy(-1)
-    if (currentLevel == 0) {
+    if (currentLevel == 5) {
         Monkey.setPosition(8, 16)
     } else {
         Monkey.setPosition(7, 214)
