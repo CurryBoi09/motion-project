@@ -40,7 +40,7 @@ function setLevelTileMap (num: number) {
         info.startCountdown(80)
         hasNextLevel()
     } else if (num == 6) {
-    	
+        tiles.setTilemap(tilemap`level25`)
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
