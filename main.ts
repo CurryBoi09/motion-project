@@ -16,7 +16,7 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 function setLevelTileMap (num: number) {
     if (num == 0) {
         tiles.setTilemap(tilemap`level1`)
-        Monkey.setPosition(8, 213)
+        Monkey.setPosition(20, 213)
         info.startCountdown(50)
     } else if (num == 1) {
         tiles.setTilemap(tilemap`level2`)
@@ -37,10 +37,11 @@ function setLevelTileMap (num: number) {
     } else if (num == 5) {
         tiles.setTilemap(tilemap`level16`)
         Monkey.setPosition(8, 16)
-        info.startCountdown(80)
+        info.startCountdown(100)
         hasNextLevel()
     } else if (num == 6) {
-        tiles.setTilemap(tilemap`level25`)
+        tiles.setTilemap(tilemap`level27`)
+        Monkey.setPosition(20, 1150)
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -55,8 +56,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     info.changeLifeBy(-1)
     if (currentLevel == 5) {
         Monkey.setPosition(10, 16)
+    } else if (currentLevel == 6) {
+        Monkey.setPosition(20, 1150)
     } else {
-        Monkey.setPosition(10, 214)
+        Monkey.setPosition(20, 210)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
@@ -66,8 +69,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, 
     tiles.setTileAt(location, assets.tile`myTile11`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
-    Monkey.setPosition(5, 215)
     music.zapped.play()
+    if (currentLevel == 6) {
+        Monkey.setPosition(20, 1150)
+    } else {
+        Monkey.setPosition(5, 215)
+    }
 })
 info.onCountdownEnd(function () {
     music.buzzer.play()
@@ -77,6 +84,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
     tiles.setTileAt(location, assets.tile`myTile15`)
     Monkey.setImage(assets.image`Golden Curious George`)
     game.showLongText("You have unlocked the golden curious george skin", DialogLayout.Bottom)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile17`, function (sprite, location) {
+    music.bigCrash.play()
+    info.changeLifeBy(-1)
+    tiles.setTileAt(location, assets.tile`myTile11`)
 })
 function Introduction (text: string) {
     game.splash("Curious George Satan Run")
@@ -124,7 +136,7 @@ Monkey.ay = 300
 info.setLife(3)
 info.setScore(0)
 currentLevel = 0
-levelCount = 6
+levelCount = 7
 setLevelTileMap(currentLevel)
 if (Monkey.x < 1) {
     if (currentLevel == 5) {
