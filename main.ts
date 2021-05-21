@@ -42,6 +42,7 @@ function setLevelTileMap (num: number) {
     } else if (num == 6) {
         tiles.setTilemap(tilemap`level27`)
         Monkey.setPosition(20, 1150)
+        info.startCountdown(70)
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -59,7 +60,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     } else if (currentLevel == 6) {
         Monkey.setPosition(20, 1150)
     } else {
-        Monkey.setPosition(20, 210)
+        Monkey.setPosition(20, 205)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
@@ -131,7 +132,6 @@ Monkey = sprites.create(img`
 scene.setBackgroundColor(11)
 scene.cameraFollowSprite(Monkey)
 JumpAmount = 0
-Monkey.setPosition(5, 214)
 Monkey.ay = 300
 info.setLife(3)
 info.setScore(0)
