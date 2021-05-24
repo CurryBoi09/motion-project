@@ -37,7 +37,7 @@ function setLevelTileMap (num: number) {
     } else if (num == 5) {
         tiles.setTilemap(tilemap`level16`)
         Monkey.setPosition(8, 16)
-        info.startCountdown(100)
+        info.startCountdown(120)
         hasNextLevel()
     } else if (num == 6) {
         tiles.setTilemap(tilemap`level27`)
@@ -60,7 +60,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     } else if (currentLevel == 6) {
         Monkey.setPosition(20, 1150)
     } else {
-        Monkey.setPosition(20, 205)
+        Monkey.setPosition(20, 195)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
