@@ -1,7 +1,7 @@
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     currentLevel += 1
     info.changeLifeBy(2)
-    music.baDing.play()
+    music.beamUp.play()
     if (hasNextLevel()) {
         pause(1000)
         game.splash("Next Level")
@@ -38,11 +38,21 @@ function setLevelTileMap (num: number) {
         tiles.setTilemap(tilemap`level16`)
         Monkey.setPosition(8, 16)
         info.startCountdown(120)
-        hasNextLevel()
     } else if (num == 6) {
         tiles.setTilemap(tilemap`level27`)
         Monkey.setPosition(20, 1150)
         info.startCountdown(70)
+    } else if (num == 7) {
+        tiles.setTilemap(tilemap`level37`)
+        Monkey.setPosition(10, 470)
+        info.startCountdown(240)
+    } else if (num == 8) {
+        tiles.setTilemap(tilemap`level38`)
+        game.showLongText("You have now made it to monkey heaven. Jesus congratulates you on finishing the game. ", DialogLayout.Top)
+        Monkey.setPosition(8, 213)
+        info.startCountdown(360)
+    } else {
+        hasNextLevel()
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -54,19 +64,24 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     music.smallCrash.play()
     pause(100)
-    info.changeLifeBy(-1)
     if (currentLevel == 5) {
         Monkey.setPosition(10, 16)
+        info.changeLifeBy(-1)
     } else if (currentLevel == 6) {
         Monkey.setPosition(20, 1150)
+        info.changeLifeBy(-1)
+    } else if (currentLevel == 7) {
+        Monkey.setPosition(20, 470)
+        info.changeLifeBy(-1)
     } else {
         Monkey.setPosition(20, 195)
+        info.changeLifeBy(-1)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, location) {
     info.changeScoreBy(5)
     info.changeLifeBy(1)
-    music.beamUp.play()
+    music.baDing.play()
     tiles.setTileAt(location, assets.tile`myTile11`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, location) {
@@ -100,7 +115,7 @@ function Introduction (text: string) {
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Banana`, function (sprite, location) {
     info.changeScoreBy(1)
-    music.beamUp.play()
+    music.baDing.play()
     tiles.setTileAt(location, assets.tile`myTile11`)
 })
 function hasNextLevel () {
@@ -132,11 +147,16 @@ Monkey = sprites.create(img`
 scene.setBackgroundColor(11)
 scene.cameraFollowSprite(Monkey)
 JumpAmount = 0
+if (currentLevel == 8) {
+    scene.setBackgroundColor(9)
+} else {
+    scene.setBackgroundColor(11)
+}
 Monkey.ay = 300
 info.setLife(3)
 info.setScore(0)
 currentLevel = 0
-levelCount = 7
+levelCount = 9
 setLevelTileMap(currentLevel)
 if (Monkey.x < 1) {
     if (currentLevel == 5) {
